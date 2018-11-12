@@ -1,5 +1,5 @@
 //
-//  YourSpendingsTests.swift
+//  ShopTests.swift
 //  YourSpendingsTests
 //
 //  Created by user on 12.11.2018.
@@ -7,9 +7,10 @@
 //
 
 import XCTest
+import FirebaseCore
 @testable import YourSpendings
 
-class YourSpendingsTests: XCTestCase {
+class ShopTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,16 +22,20 @@ class YourSpendingsTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testSetShopToDB() {
+        let db = DatabaseManager.getAdapter()
+        let shop1 = Shop()
+        shop1["name"] = "Magnit"
+        db.persistModel(model:shop1) { err in
+            shop1["name"] = "Magnit3"
+            Thread.sleep(forTimeInterval:10)
+            db.persistModel(model:shop1) {err in
+               
+            }
+        }
+        Thread.sleep(forTimeInterval:30)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
+
     
 }
