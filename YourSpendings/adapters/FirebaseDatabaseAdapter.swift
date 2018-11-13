@@ -25,10 +25,9 @@ class FirebaseDatabaseAdapter: IDatabaseAdapter {
     }
     
     func loadCollection(collection: ICollection, callback: @escaping () -> Void) {
-        let name = collection.getName()
         db.collection(collection.getName()).getDocuments { (snapshot, err) in
             if (err != nil) {
-                print("Could not load collection. Error: \(err)")
+                print("Could not load collection. Error: \(String(describing: err))")
                 return
             }
             guard let snapshot = snapshot else {

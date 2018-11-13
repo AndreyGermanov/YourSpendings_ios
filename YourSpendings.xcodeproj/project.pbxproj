@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3FC2F4664D6D15D10A42CC6D /* Pods_YourSpendings.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB9A9FFBBD0F39F7CCBA1C14 /* Pods_YourSpendings.framework */; };
 		8983277081103317B5B9787D /* Pods_YourSpendingsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67589A98A79E1F134517161 /* Pods_YourSpendingsUITests.framework */; };
+		CE50F6A7219AD97A008167EE /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */; };
 		CE9E1C0221997EB70083552E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C0121997EB70083552E /* Model.swift */; };
 		CE9E1C0421997EE30083552E /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C0321997EE30083552E /* Shop.swift */; };
 		CE9E1C0721997FCF0083552E /* IDatabaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C0621997FCF0083552E /* IDatabaseAdapter.swift */; };
@@ -21,7 +22,7 @@
 		CE9E1C172199C6290083552E /* ShopsCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C162199C6290083552E /* ShopsCollection.swift */; };
 		CE9E1C1A2199CF890083552E /* ShopsCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C192199CF890083552E /* ShopsCollectionTests.swift */; };
 		CEA9B0FC2199605F00C97843 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9B0FB2199605F00C97843 /* AppDelegate.swift */; };
-		CEA9B0FE2199605F00C97843 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9B0FD2199605F00C97843 /* ViewController.swift */; };
+		CEA9B0FE2199605F00C97843 /* SelectPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA9B0FD2199605F00C97843 /* SelectPlaceViewController.swift */; };
 		CEA9B1012199605F00C97843 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA9B0FF2199605F00C97843 /* Main.storyboard */; };
 		CEA9B1032199605F00C97843 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA9B1022199605F00C97843 /* Assets.xcassets */; };
 		CEA9B1062199605F00C97843 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA9B1042199605F00C97843 /* LaunchScreen.storyboard */; };
@@ -55,6 +56,7 @@
 		B67589A98A79E1F134517161 /* Pods_YourSpendingsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YourSpendingsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9A9FFBBD0F39F7CCBA1C14 /* Pods_YourSpendings.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YourSpendings.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9345642F62C153910B077C4 /* Pods-YourSpendingsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourSpendingsTests.release.xcconfig"; path = "Target Support Files/Pods-YourSpendingsTests/Pods-YourSpendingsTests.release.xcconfig"; sourceTree = "<group>"; };
+		CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		CE9E1C0121997EB70083552E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE9E1C0321997EE30083552E /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		CE9E1C0621997FCF0083552E /* IDatabaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDatabaseAdapter.swift; sourceTree = "<group>"; };
@@ -68,7 +70,7 @@
 		CE9E1C192199CF890083552E /* ShopsCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsCollectionTests.swift; sourceTree = "<group>"; };
 		CEA9B0F82199605F00C97843 /* YourSpendings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourSpendings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA9B0FB2199605F00C97843 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CEA9B0FD2199605F00C97843 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CEA9B0FD2199605F00C97843 /* SelectPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPlaceViewController.swift; sourceTree = "<group>"; };
 		CEA9B1002199605F00C97843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEA9B1022199605F00C97843 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEA9B1052199605F00C97843 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -180,6 +182,15 @@
 			path = collections;
 			sourceTree = "<group>";
 		};
+		CE9E1C1B219ACAB60083552E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				CEA9B0FD2199605F00C97843 /* SelectPlaceViewController.swift */,
+				CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		CEA9B0EF2199605F00C97843 = {
 			isa = PBXGroup;
 			children = (
@@ -205,12 +216,12 @@
 		CEA9B0FA2199605F00C97843 /* YourSpendings */ = {
 			isa = PBXGroup;
 			children = (
+				CE9E1C1B219ACAB60083552E /* views */,
 				CE9E1C082199804C0083552E /* collections */,
 				CE9E1C0521997FAC0083552E /* adapters */,
 				CE9E1C0021997E830083552E /* models */,
 				CEA9B1292199617C00C97843 /* GoogleService-Info.plist */,
 				CEA9B0FB2199605F00C97843 /* AppDelegate.swift */,
-				CEA9B0FD2199605F00C97843 /* ViewController.swift */,
 				CEA9B0FF2199605F00C97843 /* Main.storyboard */,
 				CEA9B1022199605F00C97843 /* Assets.xcassets */,
 				CEA9B1042199605F00C97843 /* LaunchScreen.storyboard */,
@@ -492,7 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9E1C0221997EB70083552E /* Model.swift in Sources */,
-				CEA9B0FE2199605F00C97843 /* ViewController.swift in Sources */,
+				CE50F6A7219AD97A008167EE /* NewPlaceViewController.swift in Sources */,
+				CEA9B0FE2199605F00C97843 /* SelectPlaceViewController.swift in Sources */,
 				CE9E1C1521998BFC0083552E /* DatabaseManager.swift in Sources */,
 				CEA9B0FC2199605F00C97843 /* AppDelegate.swift in Sources */,
 				CE9E1C0A219980830083552E /* ICollection.swift in Sources */,
