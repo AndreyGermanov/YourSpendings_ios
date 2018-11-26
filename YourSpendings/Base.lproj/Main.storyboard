@@ -89,7 +89,7 @@
                                 </items>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlP-eM-KcL">
-                                <rect key="frame" x="0.0" y="221" width="375" height="446"/>
+                                <rect key="frame" x="0.0" y="181" width="375" height="486"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfY-pc-bU1">
                                 <rect key="frame" x="16" y="77" width="52" height="21"/>
@@ -148,16 +148,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5m9-KK-0Qd">
-                                <rect key="frame" x="16" y="181" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="jBY-It-qzt"/>
-                                </constraints>
-                                <state key="normal" title="Current location">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -172,23 +162,25 @@
                             <constraint firstItem="ELl-7K-rdB" firstAttribute="top" secondItem="pfY-pc-bU1" secondAttribute="bottom" constant="15" id="D1Y-eA-aPl"/>
                             <constraint firstItem="ELl-7K-rdB" firstAttribute="leading" secondItem="bZe-BC-f7Y" secondAttribute="leading" constant="16" id="FQP-dV-ZGA"/>
                             <constraint firstItem="0kT-5u-jgi" firstAttribute="leading" secondItem="pfY-pc-bU1" secondAttribute="trailing" constant="37" id="KoU-a6-cGG"/>
-                            <constraint firstItem="5m9-KK-0Qd" firstAttribute="top" secondItem="XUq-g1-qR5" secondAttribute="bottom" constant="8" id="QLb-h7-rSb"/>
                             <constraint firstItem="bZe-BC-f7Y" firstAttribute="trailing" secondItem="LN0-mH-LeJ" secondAttribute="trailing" constant="16" id="RR4-5H-wBv"/>
-                            <constraint firstItem="5m9-KK-0Qd" firstAttribute="leading" secondItem="bZe-BC-f7Y" secondAttribute="leading" constant="16" id="Snh-eA-oEt"/>
-                            <constraint firstItem="YlP-eM-KcL" firstAttribute="top" secondItem="5m9-KK-0Qd" secondAttribute="bottom" constant="10" id="URY-ft-hcr"/>
                             <constraint firstItem="YlP-eM-KcL" firstAttribute="leading" secondItem="bZe-BC-f7Y" secondAttribute="leading" id="a0a-OX-UjM"/>
                             <constraint firstItem="XUq-g1-qR5" firstAttribute="top" secondItem="LN0-mH-LeJ" secondAttribute="bottom" constant="5" id="azP-Yi-Fav"/>
                             <constraint firstItem="pfY-pc-bU1" firstAttribute="top" secondItem="SbZ-bV-vE5" secondAttribute="bottom" constant="13" id="fB7-vQ-I7V"/>
                             <constraint firstItem="jW9-Ps-oKY" firstAttribute="leading" secondItem="bZe-BC-f7Y" secondAttribute="leading" constant="16" id="gH8-lV-v46"/>
                             <constraint firstItem="pfY-pc-bU1" firstAttribute="leading" secondItem="bZe-BC-f7Y" secondAttribute="leading" constant="16" id="iRz-kH-Pw7"/>
                             <constraint firstItem="YlP-eM-KcL" firstAttribute="bottom" secondItem="bZe-BC-f7Y" secondAttribute="bottom" id="kUD-bL-lH5"/>
-                            <constraint firstItem="bZe-BC-f7Y" firstAttribute="trailing" secondItem="5m9-KK-0Qd" secondAttribute="trailing" constant="16" id="lRd-RY-y1s"/>
                             <constraint firstItem="LN0-mH-LeJ" firstAttribute="top" secondItem="0kT-5u-jgi" secondAttribute="bottom" constant="6" id="p5E-d0-20Y"/>
                             <constraint firstItem="0kT-5u-jgi" firstAttribute="top" secondItem="SbZ-bV-vE5" secondAttribute="bottom" constant="8" id="tp0-Xj-Zfk"/>
+                            <constraint firstItem="YlP-eM-KcL" firstAttribute="top" secondItem="XUq-g1-qR5" secondAttribute="bottom" constant="8" id="vId-Jr-obB"/>
                             <constraint firstItem="LN0-mH-LeJ" firstAttribute="leading" secondItem="ELl-7K-rdB" secondAttribute="trailing" constant="23" id="x4Z-oH-Sen"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bZe-BC-f7Y"/>
                     </view>
+                    <connections>
+                        <outlet property="latitudeField" destination="LN0-mH-LeJ" id="GDv-HQ-eYc"/>
+                        <outlet property="longitudeField" destination="XUq-g1-qR5" id="8NO-jt-3GI"/>
+                        <outlet property="nameField" destination="0kT-5u-jgi" id="dhG-ft-vzk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9av-vP-6CN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
