@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u6X-bb-ZmU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,7 +30,11 @@
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7vU-FB-GTo"/>
                                         <rightBarButtonItems>
                                             <barButtonItem systemItem="done" id="9Od-0g-9dY"/>
-                                            <barButtonItem systemItem="add" id="G6w-IR-r9C"/>
+                                            <barButtonItem systemItem="add" id="G6w-IR-r9C">
+                                                <connections>
+                                                    <action selector="onAddPlaceClick:" destination="BYZ-38-t0r" id="G4Q-II-X01"/>
+                                                </connections>
+                                            </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
                                 </items>
@@ -83,7 +87,11 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="Add place" id="qkD-IE-EJN">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Udb-tc-8nF"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Udb-tc-8nF">
+                                            <connections>
+                                                <action selector="onCancelClick:" destination="u6X-bb-ZmU" id="trC-y2-MF1"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="aHY-VX-Yaz"/>
                                     </navigationItem>
                                 </items>

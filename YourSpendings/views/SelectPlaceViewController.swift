@@ -10,6 +10,13 @@ import UIKit
 
 class SelectPlaceViewController: UIViewController {
 
+    @IBAction func onAddPlaceClick(_ sender: UIBarButtonItem) {
+        Store.currentShopLatitude = ""
+        Store.currentShopName = ""
+        Store.currentShopLongitude = ""
+        performSegue(withIdentifier: "editPlaceSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

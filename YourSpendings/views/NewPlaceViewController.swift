@@ -49,6 +49,10 @@ class NewPlaceViewController: UIViewController, IStoreSubscriber {
     func onStateChange(_ prevState: AppState) {
         fillFormFromState()
     }
+    
+    @IBAction func onCancelClick(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension NewPlaceViewController: UITextFieldDelegate {
