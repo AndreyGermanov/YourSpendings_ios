@@ -47,4 +47,34 @@ class Shop: Model {
         return id == nil ? Shop() : Shop(id!)
     }
     
+    static func validateName(_ value:Any?,id: String?) -> String? {
+        guard let name = Model.getStringFromAny(value) else { return "Name is required" }
+        if name.isEmpty { return "Name is required" }
+        let models = ShopsCollection.getInstance(Shop()).getModels(["name":name])
+        guard var foundModels = models else { return nil }
+        if id == nil && foundModels.count>0 { return "Place with specified name already exists" }
+        foundModels = foundModels.filter { key, model in model.getId() != id }
+        if foundModels.count > 0 { return "Place with specified name already exists"}
+        return nil
+    }
+    
+    static func validateLatitude(_ value: Any?) -> String? {
+        if !validateCoordinate(value) { val in !val.isLess(than:0.0) && val<=90.0} {
+            return "Incorrect value"
+        }
+        return nil
+    }
+    
+    static func validateLongitude(_ value: Any?) -> String? {
+        if !validateCoordinate(value) { val in !val.isLess(than:0.0) && val<=180.0} {
+            return "Incorrect value"
+        }
+        return nil
+    }
+    
+    static func validateCoordinate(_ value: Any?,condition: (_ val:Double) -> Bool) -> Bool {
+        guard let result = getDoubleFromAny(value) else { return false }
+        return condition(result)
+    }
+
 }

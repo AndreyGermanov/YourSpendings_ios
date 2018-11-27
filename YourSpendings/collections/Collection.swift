@@ -58,8 +58,16 @@ class Collection: ICollection {
         return model.getCollection()
     }
     
-    func getModels() -> [String:IModel] {
-        return models
+    func getModels(_ filter:[String:Any]?=nil) -> [String:IModel]? {
+        return filter == nil ? models : models.filter { key,model in
+            guard let filter_fields = filter else { return true }
+            for (field) in filter_fields {
+                let model_fields = model.getFields()
+                guard let model_field_value = model_fields[field.key] else {return false}
+                if model_field_value != field.value as! _OptionalNilComparisonType { return false }
+            }
+            return true
+        }
     }
 
 }

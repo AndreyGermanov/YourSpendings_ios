@@ -18,4 +18,6 @@ class ShopsCollection : Collection {
         return i
     }
     
+    
+    
 }

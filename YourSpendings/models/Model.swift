@@ -67,4 +67,22 @@ class Model: IModel {
         }
         return value
     }
+    
+    static func getStringFromAny(_ value:Any?) -> String? {
+        if value == nil { return nil }
+        if value is String { return (value as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)}
+        return nil
+    }
+    
+    static func getDoubleFromAny(_ value:Any?) -> Double? {
+        if value == nil { return nil }
+        if value is Double { return value as? Double}
+        let strValue = getStringFromAny(value)
+        if strValue == nil {return nil}
+        let dblValue =  Double.init(strValue!)
+        if dblValue != nil { return dblValue!}
+        let intValue = Int.init(strValue!)
+        if intValue != nil { return Double.init(intValue!)}
+        return nil
+    }    
 }

@@ -13,6 +13,7 @@
 		CE1947AE21AC4BB100CB6381 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1947AD21AC4BB100CB6381 /* Store.swift */; };
 		CE1947B021AC4BD700CB6381 /* IStoreSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1947AF21AC4BD700CB6381 /* IStoreSubscriber.swift */; };
 		CE1947B221AC4C2300CB6381 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1947B121AC4C2300CB6381 /* AppState.swift */; };
+		CE1947B421ADD73E00CB6381 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1947B321ADD73D00CB6381 /* BaseController.swift */; };
 		CE50F6A7219AD97A008167EE /* NewPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */; };
 		CE9E1C0221997EB70083552E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C0121997EB70083552E /* Model.swift */; };
 		CE9E1C0421997EE30083552E /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9E1C0321997EE30083552E /* Shop.swift */; };
@@ -64,6 +65,7 @@
 		CE1947AD21AC4BB100CB6381 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		CE1947AF21AC4BD700CB6381 /* IStoreSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStoreSubscriber.swift; sourceTree = "<group>"; };
 		CE1947B121AC4C2300CB6381 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		CE1947B321ADD73D00CB6381 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlaceViewController.swift; sourceTree = "<group>"; };
 		CE9E1C0121997EB70083552E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		CE9E1C0321997EE30083552E /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				CEA9B0FD2199605F00C97843 /* SelectPlaceViewController.swift */,
 				CE50F6A6219AD979008167EE /* NewPlaceViewController.swift */,
+				CE1947B321ADD73D00CB6381 /* BaseController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				CE9E1C0721997FCF0083552E /* IDatabaseAdapter.swift in Sources */,
 				CE9E1C0421997EE30083552E /* Shop.swift in Sources */,
 				CE9E1C172199C6290083552E /* ShopsCollection.swift in Sources */,
+				CE1947B421ADD73E00CB6381 /* BaseController.swift in Sources */,
 				CE9E1C0E219983C90083552E /* Collection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -92,7 +92,11 @@
                                                 <action selector="onCancelClick:" destination="u6X-bb-ZmU" id="trC-y2-MF1"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="aHY-VX-Yaz"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="aHY-VX-Yaz">
+                                            <connections>
+                                                <action selector="onDoneClick:" destination="u6X-bb-ZmU" id="tzi-7U-xaB"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>

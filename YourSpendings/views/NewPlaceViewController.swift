@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import CoreLocation
 
-class NewPlaceViewController: UIViewController, IStoreSubscriber {
+class NewPlaceViewController: BaseController, IStoreSubscriber {
 
+    let locationManager = CLLocationManager()
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var latitudeField: UITextField!
     @IBOutlet weak var longitudeField: UITextField!
@@ -18,6 +20,8 @@ class NewPlaceViewController: UIViewController, IStoreSubscriber {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        locationManager.requestAlwaysAuthorization()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTap)))
         Store.subscribe(self)
         setupForm()
@@ -48,6 +52,15 @@ class NewPlaceViewController: UIViewController, IStoreSubscriber {
     
     func onStateChange(_ prevState: AppState) {
         fillFormFromState()
+    }
+    
+    @IBAction func onDoneClick(_ sender: Any) {
+        var error = Shop.validateName(Store.currentShopName, id: nil)
+        if error != nil { showAlert("Name",message:error!); return }
+        error = Shop.validateLatitude(Store.currentShopLatitude)
+        if error != nil { showAlert("Latitude",message:error!); return }
+        error = Shop.validateLongitude(Store.currentShopLongitude)
+        if error != nil { showAlert("Longitude",message:error!); return }
     }
     
     @IBAction func onCancelClick(_ sender: Any) {
@@ -84,15 +97,16 @@ extension NewPlaceViewController: UITextFieldDelegate {
 extension NewPlaceViewController {
     @objc
     func handleCoordinateButtonClick() {
-        guard let activeField = activeField else {
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
             return
-        }
-        switch (activeField) {
-        case latitudeField:
-            activeField.text = "14.3"
-        case longitudeField:
-            activeField.text = "5.3"
-        default: break
+        case .restricted, .denied:
+            return
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.distanceFilter = 100.0
+            locationManager.delegate = self
+            locationManager.requestLocation()
         }
     }
     @objc func onViewTap() {
@@ -101,5 +115,25 @@ extension NewPlaceViewController {
         }
         activeField.endEditing(true)
         activeField.resignFirstResponder()
+    }
+}
+
+extension NewPlaceViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let lastLocation = locations.last!
+        guard let activeField = activeField else {
+            return
+        }
+        if activeField === latitudeField {
+            latitudeField.text = lastLocation.coordinate.latitude.description
+        }
+        if activeField === longitudeField {
+            longitudeField.text = lastLocation.coordinate.longitude.description
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
     }
 }

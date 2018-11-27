@@ -15,5 +15,5 @@ protocol ICollection {
     func newModel(_ id:String?) -> IModel
     func clear()
     func getName() -> String
-    func getModels() -> [String:IModel]
+    func getModels(_ filter:[String:Any]?) -> [String:IModel]?
 }
