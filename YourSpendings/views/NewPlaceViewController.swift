@@ -61,6 +61,15 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
         if error != nil { showAlert("Latitude",message:error!); return }
         error = Shop.validateLongitude(Store.currentShopLongitude)
         if error != nil { showAlert("Longitude",message:error!); return }
+        let shop = Shop()
+        shop.setFields(["name": Store.currentShopName,
+                        "latitude":Store.currentShopLatitude,
+                        "longitude":Store.currentShopLongitude]
+        )
+        DatabaseManager.getAdapter().persistModel(model: shop) { err in
+            ShopsCollection.getInstance(shop).addModel(shop)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @IBAction func onCancelClick(_ sender: Any) {

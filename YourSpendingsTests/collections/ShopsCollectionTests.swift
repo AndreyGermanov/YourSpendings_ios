@@ -23,7 +23,7 @@ class ShopsCollectionTests: XCTestCase {
         let shops = ShopsCollection.getInstance(Shop())
         db.loadCollection(collection: shops) {
             let models = shops.getModels()
-            for item in models {
+            for item in models! {
                 guard let model = item.value as? Shop else {
                     continue
                 }
