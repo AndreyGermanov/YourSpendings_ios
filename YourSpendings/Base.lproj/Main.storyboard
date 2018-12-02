@@ -111,7 +111,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YlP-eM-KcL">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YlP-eM-KcL">
                                 <rect key="frame" x="0.0" y="181" width="375" height="486"/>
                             </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfY-pc-bU1">
@@ -202,6 +202,7 @@
                     <connections>
                         <outlet property="latitudeField" destination="LN0-mH-LeJ" id="GDv-HQ-eYc"/>
                         <outlet property="longitudeField" destination="XUq-g1-qR5" id="8NO-jt-3GI"/>
+                        <outlet property="map" destination="YlP-eM-KcL" id="zEM-YB-5ow"/>
                         <outlet property="nameField" destination="0kT-5u-jgi" id="dhG-ft-vzk"/>
                     </connections>
                 </viewController>

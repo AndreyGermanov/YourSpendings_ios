@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
-class NewPlaceViewController: BaseController, IStoreSubscriber {
+class NewPlaceViewController: BaseController {
 
+    @IBOutlet weak var map: MKMapView!
     let locationManager = CLLocationManager()
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var latitudeField: UITextField!
@@ -18,19 +20,20 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
     let detectButton: UIButton = UIButton(type: UIButtonType.custom)
     var activeField: UITextField?
     let shops = ShopsCollection.getInstance(Shop())
+    var placeMarker = MKPlacemark()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         locationManager.requestAlwaysAuthorization()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onViewTap)))
-        Store.subscribe(self)
         setupForm()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fillFormFromState()
+        updateMap()
     }
     
     func setupForm() {
@@ -43,6 +46,8 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
         detectButton.frame = detectButtonFrame
         detectButton.setImage(UIImage(named: "detect.png"), for: .normal)
         detectButton.addTarget(self, action: #selector(handleCoordinateButtonClick), for: .touchUpInside)
+        longitudeField.addTarget(self,action:#selector(textDidChange),for:.editingChanged)
+        latitudeField.addTarget(self,action:#selector(textDidChange),for:.editingChanged)
     }
     
     func fillFormFromState() {
@@ -51,8 +56,15 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
         longitudeField.text = Store.currentShopLongitude
     }
     
-    func onStateChange(_ prevState: AppState) {
-        fillFormFromState()
+    func updateMap() {
+        map.removeAnnotations(map.annotations)
+        let lat = Shop.getDoubleFromAny(Store.currentShopLatitude)!
+        let lon = Shop.getDoubleFromAny(Store.currentShopLongitude)!
+        let center = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        let region = MKCoordinateRegion(center:center,span:MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        map.setRegion(region,animated:true)
+        //placeMarker = MKPlacemark(coordinate: center)
+        map.addAnnotation(MKPlacemark(coordinate:center))
     }
     
     @IBAction func onDoneClick(_ sender: UIBarButtonItem) {
@@ -79,6 +91,7 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
     }
     
     func validateForm() -> Bool {
+        updateState()
         var error = Shop.validateName(Store.currentShopName, id: nil)
         if error != nil { showAlert("Name",message:error!); return false }
         error = Shop.validateLatitude(Store.currentShopLatitude)
@@ -86,6 +99,12 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
         error = Shop.validateLongitude(Store.currentShopLongitude)
         if error != nil { showAlert("Longitude",message:error!); return false }
         return true
+    }
+    
+    func updateState() {
+        Store.currentShopName = nameField.text!
+        Store.currentShopLongitude = longitudeField.text!
+        Store.currentShopLatitude = latitudeField.text!
     }
 }
 
@@ -113,6 +132,11 @@ extension NewPlaceViewController: UITextFieldDelegate {
         activeField = nil
     }
     
+    @objc func textDidChange(textField:UITextField) {
+        updateState()
+        if Shop.validateLatitude(Store.currentShopLatitude) != nil || Shop.validateLongitude(Store.currentShopLongitude) != nil {return}
+        updateMap()
+    }
 }
 
 extension NewPlaceViewController {
@@ -152,9 +176,21 @@ extension NewPlaceViewController: CLLocationManagerDelegate {
         if activeField === longitudeField {
             longitudeField.text = lastLocation.coordinate.longitude.description
         }
+        updateState()
+        updateMap()
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
+    }
+}
+
+extension NSRange {
+    func toTextRange(_ textInput:UITextInput) -> UITextRange? {
+        if let rangeStart = textInput.position(from: textInput.beginningOfDocument, offset: location),
+            let rangeEnd = textInput.position(from: rangeStart, offset: length) {
+            return textInput.textRange(from: rangeStart, to: rangeEnd)
+        }
+        return nil
     }
 }
