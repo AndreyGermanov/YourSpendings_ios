@@ -7,6 +7,7 @@
 //
 
 struct AppState {
+    var currentShopId:String = ""
     var currentShopName:String = ""
     var currentShopLatitude:String = ""
     var currentShopLongitude:String = ""

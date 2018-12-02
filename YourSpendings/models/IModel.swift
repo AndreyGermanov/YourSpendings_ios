@@ -10,7 +10,9 @@ import Foundation
 protocol IModel {
     func getId() -> String
     func getFields() -> [String:Any?]
+    func getFieldTypes() -> [String:Type]
     func setFields(_ data:[String:Any])
     func getCollection() -> String
     func newModel(_ id:String?) -> IModel
+    func isEqual(_ fieldName:String,value:Any?) -> Bool
 }

@@ -30,6 +30,15 @@ class Store {
         }
     }
     
+    static var currentShopId: String {
+        get {return appState.currentShopId}
+        set {
+            let prevState = appState
+            appState.currentShopId = newValue
+            notify(prevState)
+        }
+    }
+    
     static var currentShopName : String {
         get {return appState.currentShopName}
         set {

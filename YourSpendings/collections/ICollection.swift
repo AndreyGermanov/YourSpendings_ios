@@ -16,4 +16,5 @@ protocol ICollection {
     func clear()
     func getName() -> String
     func getModels(_ filter:[String:Any]?) -> [String:IModel]?
+    func count() -> Int
 }

@@ -17,6 +17,7 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
     @IBOutlet weak var longitudeField: UITextField!
     let detectButton: UIButton = UIButton(type: UIButtonType.custom)
     var activeField: UITextField?
+    let shops = ShopsCollection.getInstance(Shop())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,26 +55,37 @@ class NewPlaceViewController: BaseController, IStoreSubscriber {
         fillFormFromState()
     }
     
-    @IBAction func onDoneClick(_ sender: Any) {
-        var error = Shop.validateName(Store.currentShopName, id: nil)
-        if error != nil { showAlert("Name",message:error!); return }
-        error = Shop.validateLatitude(Store.currentShopLatitude)
-        if error != nil { showAlert("Latitude",message:error!); return }
-        error = Shop.validateLongitude(Store.currentShopLongitude)
-        if error != nil { showAlert("Longitude",message:error!); return }
-        let shop = Shop()
+    @IBAction func onDoneClick(_ sender: UIBarButtonItem) {
+        if !validateForm() { return }
+        var shop = Shop()
+        if !Store.currentShopId.isEmpty {
+            let model = shops.getModelById(Store.currentShopId) as? Shop
+            if model == nil { return} else { shop = model! }
+        }
+        sender.isEnabled = false
         shop.setFields(["name": Store.currentShopName,
                         "latitude":Store.currentShopLatitude,
                         "longitude":Store.currentShopLongitude]
         )
         DatabaseManager.getAdapter().persistModel(model: shop) { err in
             ShopsCollection.getInstance(shop).addModel(shop)
+            sender.isEnabled = true
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func onCancelClick(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func validateForm() -> Bool {
+        var error = Shop.validateName(Store.currentShopName, id: nil)
+        if error != nil { showAlert("Name",message:error!); return false }
+        error = Shop.validateLatitude(Store.currentShopLatitude)
+        if error != nil { showAlert("Latitude",message:error!); return false }
+        error = Shop.validateLongitude(Store.currentShopLongitude)
+        if error != nil { showAlert("Longitude",message:error!); return false }
+        return true
     }
 }
 

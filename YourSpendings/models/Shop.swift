@@ -11,6 +11,10 @@ import CoreLocation
 
 class Shop: Model {
     
+    override func getFieldTypes() -> [String:Type] {
+        return ["name":Type.STRING,"latitude":Type.DOUBLE,"longitude":Type.DOUBLE]
+    }
+    
     var name: String? {
         get { return getStringValue("name") }
         set { fields["name"] = newValue }

@@ -62,12 +62,25 @@ class Collection: ICollection {
         return filter == nil ? models : models.filter { key,model in
             guard let filter_fields = filter else { return true }
             for (field) in filter_fields {
-                let model_fields = model.getFields()
-                guard let model_field_value = model_fields[field.key] else {return false}
-                if model_field_value != field.value as! _OptionalNilComparisonType { return false }
+                if !model.isEqual(field.key,value: field) { return false }
             }
             return true
         }
+    }
+    
+    func count() -> Int {
+        return models.count
+    }
+    
+    func getModelById(_ id:String) -> IModel? {
+        guard let result = models[id] else { return nil }
+        return result;
+    }
+    
+    func getModelAtIndex(_ index: Int) -> IModel? {
+        let keys = Array(models.keys)
+        if index>=keys.count { return nil }
+        return models[keys[index]]
     }
 
 }
