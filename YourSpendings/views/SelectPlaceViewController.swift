@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import MapKit
 
 class SelectPlaceViewController: UIViewController,IStoreSubscriber {
     
     @IBOutlet weak var placesTable: UITableView!
     let shops = ShopsCollection.getInstance(Shop())
+    @IBOutlet weak var map: MKMapView!
     
     @IBAction func onAddPlaceClick(_ sender: UIBarButtonItem) {
         Store.currentShopLatitude = ""
@@ -27,6 +29,7 @@ class SelectPlaceViewController: UIViewController,IStoreSubscriber {
         Store.subscribe(self)
         DatabaseManager.getAdapter().loadCollection(collection: ShopsCollection.getInstance(Shop())) {
             self.placesTable.reloadData()
+            self.updateMap()
         }
     }
     
@@ -37,6 +40,26 @@ class SelectPlaceViewController: UIViewController,IStoreSubscriber {
     
     func onStateChange(_ prevState: AppState) {
         placesTable.reloadData()
+    }
+    
+    func updateMap() {
+        map.removeAnnotations(map.annotations)
+        var annotations = [MKPlacemark]()
+        let items = shops.getModels()!
+        for item in items {
+            guard let shop = item.value as? Shop, let coordinate = shop.coordinate  else {
+                continue
+            }
+            annotations.append(MKPlacemark(coordinate: coordinate))
+        }
+        var center = CLLocationCoordinate2D()
+        
+        if let shop = shops.getModelById(Store.currentShopId) as? Shop,let coordinate = shop.coordinate {
+            center = coordinate
+        }
+        let region = MKCoordinateRegion(center:center,span:MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        map.setRegion(region, animated: true)
+        map.addAnnotations(annotations)
     }
 }
 
@@ -68,6 +91,7 @@ extension SelectPlaceViewController: UITableViewDataSource, UITableViewDelegate 
         } else {
             Store.currentShopLongitude = ""
         }
-        performSegue(withIdentifier:"editPlaceSegue",sender:self)
+        updateMap()
+        //performSegue(withIdentifier:"editPlaceSegue",sender:self)
     }
 }
