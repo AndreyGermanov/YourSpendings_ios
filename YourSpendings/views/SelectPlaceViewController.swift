@@ -45,19 +45,22 @@ class SelectPlaceViewController: UIViewController,IStoreSubscriber {
     func updateMap() {
         map.removeAnnotations(map.annotations)
         var annotations = [MKPlacemark]()
+        var coordinates = [CLLocationCoordinate2D]()
         let items = shops.getModels()!
         for item in items {
             guard let shop = item.value as? Shop, let coordinate = shop.coordinate  else {
                 continue
             }
+            coordinates.append(coordinate)
             annotations.append(MKPlacemark(coordinate: coordinate))
         }
         var center = CLLocationCoordinate2D()
-        
         if let shop = shops.getModelById(Store.currentShopId) as? Shop,let coordinate = shop.coordinate {
             center = coordinate
+        } else {
+            center = getCenter(coordinates)
         }
-        let region = MKCoordinateRegion(center:center,span:MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02))
+        let region = MKCoordinateRegion(center:center,span:MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
         map.setRegion(region, animated: true)
         map.addAnnotations(annotations)
     }
